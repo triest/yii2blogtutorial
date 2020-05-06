@@ -104,6 +104,11 @@ class Article extends \yii\db\ActiveRecord
                 ->viaTable('article_tag', ['article_id' => 'id']);
     }
 
+    public static function getRecent()
+    {
+        return Article::find()->orderBy('date asc')->limit(4)->all();
+    }
+
     public function getSelectedTags()
     {
         $selectedIds = $this->getTags()->select('id')->asArray()->all();
@@ -130,8 +135,23 @@ class Article extends \yii\db\ActiveRecord
         return $this->save(false);
     }
 
+    public function getImage()
+    {
+        return ($this->image) ? '/blog-tutorial/web/uploads/' . $this->image : '/no-image.png';
+    }
+
+    public static function getPopular()
+    {
+        return Article::find()->orderBy('viewed desc')->limit(3)->all();
+    }
+
     public function clearCurrentTags()
     {
         ArticleTag::deleteAll(['article_id'=>$this->id]);
+    }
+
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->date);
     }
 }
