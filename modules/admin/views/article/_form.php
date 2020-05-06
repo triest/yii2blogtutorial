@@ -1,11 +1,11 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+    use yii\helpers\Html;
+    use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Article */
-/* @var $form yii\widgets\ActiveForm */
+    /* @var $this yii\web\View */
+    /* @var $model app\models\Article */
+    /* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="article-form">
@@ -26,9 +26,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'user_id')->textInput() ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
-
     <?= $form->field($model, 'category_id')->textInput() ?>
+
+    <?= $form->field($model, 'status')->dropDownList(['0' => "Не опубликованно", '1' => "Опубликованно"]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -66,7 +66,7 @@
         public function actionIndex()
         {
 
-            $qwurt = Article::find();
+            $qwurt = Article::find()->where(['status' => 1]);
             $pagination = new Pagination(['totalCount' => $qwurt, 'pageSize' => 1]);
             $articles = $qwurt->offset($pagination->offset)
                     ->limit($pagination->limit)

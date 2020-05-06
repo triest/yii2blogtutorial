@@ -8,7 +8,7 @@
 <div class="main-content">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+
                 <? foreach ($articles as $article): ?>
                     <article class="post">
                         <div class="post-thumb">
@@ -51,7 +51,6 @@
                     </article>
                 <? endforeach; ?>
 
-            </div>
         </div>
     </div>
 </div>

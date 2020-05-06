@@ -1,5 +1,7 @@
 <?php
-use yii\helpers\Url;
+
+    use yii\helpers\Url;
+
 ?>
 <div class="col-md-4" data-sticky_column>
     <div class="primary-sidebar">
@@ -7,50 +9,50 @@ use yii\helpers\Url;
         <aside class="widget">
             <h3 class="widget-title text-uppercase text-center">Popular Posts</h3>
             <?php
+                $popular = \app\models\Article::populateRecord2();
 
-            foreach($popular as $article):?>
-                <div class="popular-post">
-                    <a href="<?= Url::toRoute(['site/view','id'=>$article->id]);?>" class="popular-img"><img  width="50px" hidden="50px" src="<?= $article->getImage();?>" alt="">
-
-                        <div class="p-overlay"></div>
-                    </a>
-
-                    <div class="p-content">
-                        <a href="<?= Url::toRoute(['site/view','id'=>$article->id]);?>" class="text-uppercase"><?= $article->title?></a>
-                        <span class="p-date"><?= $article->getDate();?></span>
+                foreach ($popular as $article):?>
+                    <div class="popular-post">
+                        <?= $article->title ?>
+                        <a href="<?= Url::toRoute(['site/view', 'id' => $article->id]); ?>"><img
+                                    src="<?= $article->getImage(); ?>" width="100" alt="<?= $article->title ?>"></a>
 
                     </div>
-                </div>
-            <?php endforeach;?>
+                <?php endforeach; ?>
 
         </aside>
         <aside class="widget pos-padding">
             <h3 class="widget-title text-uppercase text-center">Recent Posts</h3>
-            <?php foreach($recent as $article):?>
+            <?php foreach ($recent as $article): ?>
                 <div class="thumb-latest-posts">
                     <div class="media">
                         <div class="media-left">
-                            <a href="<?= Url::toRoute(['site/view','id'=>$article->id]);?>" class="popular-img"><img width="50px" hidden="50px" src="<?= $article->getImage();?>" alt="">
+                            <a href="<?= Url::toRoute(['site/view', 'id' => $article->id]); ?>" class="popular-img"><img
+                                        width="50px" hidden="50px" src="<?= $article->getImage(); ?>" alt="">
                                 <div class="p-overlay"></div>
                             </a>
                         </div>
                         <div class="p-content">
-                            <a href="<?= Url::toRoute(['site/view','id'=>$article->id]);?>" class="text-uppercase"><?= $article->title?></a>
-                            <span class="p-date"><?= $article->getDate();?></span>
+                            <a href="<?= Url::toRoute(['site/view', 'id' => $article->id]); ?>"
+                               class="text-uppercase"><?= $article->title ?></a>
+                            <span class="p-date"><?= $article->getDate(); ?></span>
                         </div>
                     </div>
                 </div>
-            <?php endforeach;?>
+            <?php endforeach; ?>
         </aside>
         <aside class="widget border pos-padding">
             <h3 class="widget-title text-uppercase text-center">Categories</h3>
             <ul>
-                <?php foreach($categories as $category):?>
+                <?php foreach ($categories as $category): ?>
                     <li>
-                        <a href="<?= Url::toRoute(['site/category','id'=>$category->id]);?>"><?= $category->title?></a>
-                        <span class="post-count pull-right"> (<?= $category->getArticlesCount();?>)</span>
+                        <a href="<?= Url::toRoute([
+                                'site/category',
+                                'id' => $category->id
+                        ]); ?>"><?= $category->title ?></a>
+                        <span class="post-count pull-right"> (<?= $category->getArticlesCount(); ?>)</span>
                     </li>
-                <?php endforeach;?>
+                <?php endforeach; ?>
 
             </ul>
         </aside>
