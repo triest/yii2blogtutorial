@@ -154,4 +154,6 @@ class Article extends \yii\db\ActiveRecord
     {
         return Yii::$app->formatter->asDate($this->date);
     }
+
+
 }

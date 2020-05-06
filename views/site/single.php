@@ -1,6 +1,8 @@
 <?php
 
     use yii\helpers\Url;
+    use yii\widgets\ActiveForm;
+    use yii\helpers\Html;
 
 ?>
 <!--main content start-->
@@ -30,26 +32,41 @@
                         <div class="entry-content">
                             <?= $article->content ?>
                         </div>
-                        <div class="decoration">
-                            <a href="#" class="btn btn-default">Decoration</a>
-                            <a href="#" class="btn btn-default">Decoration</a>
-                        </div>
-
-                        <div class="social-share">
-							<span
-                                    class="social-share-title pull-left text-capitalize">By  On </span>
-                            <ul class="text-center pull-right">
-                                <li><a class="s-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a class="s-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a class="s-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a class="s-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a class="s-instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
                     </div>
                 </article>
 
+                <?php $form = ActiveForm::begin([
+                        'action' => ['comment', 'id' => $article->id],
+                        'id' => 'login-form',
+                        'fieldConfig' => [
+                                'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                                'labelOptions' => ['class' => 'col-lg-1 control-label'],
+                        ],
+                ]); ?>
 
+                <?= $form->field($commentForm, 'comment')->textInput(['autofocus' => true])->label('Login') ?>
+
+
+                <div class="form-group">
+                    <div class="col-lg-offset-1 col-lg-11">
+                        <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    </div>
+                </div>
+
+                <?php ActiveForm::end(); ?>
+
+
+                <b>Комментарии:</b> <br>
+                <? if (!empty($comments)) { ?>
+                    <? foreach ($comments as $comment): ?>
+                        <h5><?= $comment->user->name ?></h5>
+                        <h5><?= $comment->date ?></h5>
+                        <div class="comment-text">
+                            <?= $comment->text ?>
+                        </div>
+
+                    <? endforeach; ?>
+                <? } ?>
             </div>
         </div>
     </div>
