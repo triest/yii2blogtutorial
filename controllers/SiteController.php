@@ -182,12 +182,9 @@
             $model = new CommentForm();
             if (Yii::$app->request->isPost) {
                 $model->load(Yii::$app->request->post());
-
-                if ($model->saveComment($id)) {
-                    return;
-                }
-
+                $model->saveComment($id);
             }
+            return $this->redirect(['site/view', 'id' => $id]);
         }
 
     }

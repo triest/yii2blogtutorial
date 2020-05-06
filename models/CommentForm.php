@@ -8,10 +8,11 @@
 
     namespace app\models;
 
+    use Carbon\Carbon;
+
 
     use Yii;
     use yii\base\Model;
-    use Carbon\Carbon;
 
     class CommentForm extends Model
     {
@@ -31,11 +32,11 @@
 
         public function saveComment($acticle_id)
         {
-            $comment=new Comment();
-            $comment->text=$this->comment;
-            $comment->user_id=Yii::$app->user->id;
-            $comment->article_id=$acticle_id;
-            $comment->date=Carbon::now();
+            $comment = new Comment();
+            $comment->text = $this->comment;
+            $comment->user_id = Yii::$app->user->id;
+            $comment->article_id = $acticle_id;
+            $comment->date = Carbon::now();
             $comment->save(false);
         }
 
